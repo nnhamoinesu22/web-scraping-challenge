@@ -60,14 +60,16 @@ def scrape_mars_weather():
 
     tweets_list = []
     for tweets in latest_tweet: 
-    tweet_body = tweets.find('p').text
+            tweet_body = tweets.find('p').text
     if 'InSight' and 'sol' in tweet_body:
-        tweets_list.append(tweet_body)
+            tweets_list.append(tweet_body)
         break
-    else: 
+    else:    
         pass
+
     mars_weather = ([tweets_list[0]][0][:-26])
     tweet_img_link = ([tweets_list[0]][0][-26:])
+
     return mars_info_dict
     browser.quit()
 
@@ -99,7 +101,7 @@ def scrape_mars_hemispheres():
     mars_hemispheres=[]
 
     for i in range (4):
-    time.sleep(3)
+        time.sleep(3)
     images = browser.find_by_tag('h3')
     images[i].click()
     html = browser.html

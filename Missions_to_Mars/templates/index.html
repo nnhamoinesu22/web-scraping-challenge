@@ -50,8 +50,8 @@
       {% for hemisphere in mars_info_dict.mars_hemisphere %}
           <div class = "col-md-6">
               <div class = "thumbnail">
-                  <img src = "{{img_url}}">
-                      <h3>{{img_title}}</h3>
+                  <img src = "{{hemisphere.img_url}}" alt = "hemispheres images">
+                      <h3>{{hemisphere.img_title}}</h3>
                   </div>
               </div>
       {% endfor %}

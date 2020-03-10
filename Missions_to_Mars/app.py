@@ -1,5 +1,5 @@
 # Import Dependencies 
-from flask import Flask, render_template, redirect 
+from flask import Flask,render_template, redirect 
 from flask_pymongo import PyMongo
 import os
 import  scrape_mars 
@@ -15,7 +15,7 @@ mongo = PyMongo(app)
 
 # Create route that renders index.html template and finds documents from mongo
 @app.route("/")
-def home(): 
+def index(): 
 
     # Find data
     mars_info_dict = mongo.db.mars_info_dict.find_one()
@@ -29,11 +29,11 @@ def scrape():
 
     # Run scrapped functions
     mars_info_dict = mongo.db.mars_info_dict
-    mars_data = scrape_mars.scrape_mars_news(browser)
-    mars_data = scrape_mars.scrape_mars_featured_image(browser)
-    mars_data = scrape_mars.scrape_mars_weather(browser)
-    mars_data = scrape_mars.scrape_mars_facts(browser)
-    mars_data = scrape_mars.scrape_mars_hemispheres(browser)
+    mars_data = scrape_mars.scrape_mars_news()
+    mars_data = scrape_mars.scrape_mars_featured_image()
+    mars_data = scrape_mars.scrape_mars_weather()
+    mars_data = scrape_mars.scrape_mars_facts()
+    mars_data = scrape_mars.scrape_mars_hemispheres()
     mars_info_dict.update({}, mars_data, upsert=True)
 
     return redirect("/", code=302)

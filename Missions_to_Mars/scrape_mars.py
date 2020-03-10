@@ -53,6 +53,12 @@ def scrape_mars_featured_image():
 
 def scrape_mars_weather():
     browser = init_browser()
+
+    tweet_url = "https://twitter.com/marswxreport?lang=en"
+    browser.visit(tweet_url)
+    html = browser.html
+    soup = BeautifulSoup(html, "html.parser")
+    
     tweet_url = "https://twitter.com/marswxreport?lang=en"
     tweet_html_content = requests.get(tweet_url).text
     soup = BeautifulSoup(tweet_html_content, "lxml")

@@ -40,10 +40,22 @@
             <p>{{mars_info_dict.mars_weather}}</p>
             <br>
             <h4>Mars Facts</h4>
-            <p>{{mars_info_dict.mars_df_table_data_html | safe}}</p>
+            <p>{{mars_info_dict.mars_facts | safe}}</p>
         </div>
 </div>
+<div class ="row" id="mars-hemispheres">
+  <div class = "col-md-12">
+      <h3><center>Mars Hemispheres</center></h3>
 
+      {% for hemisphere in mars_info_dict.mars_hemisphere %}
+          <div class = "col-md-6">
+              <div class = "thumbnail">
+                  <img src = "{{hemisphere.img_url}}">
+                      <h3>{{hemisphere.title}}</h3>
+                  </div>
+              </div>
+      {% endfor %}
+          </div>
 
 </body>
 

@@ -1,4 +1,4 @@
-#import pandas as pd
+import pandas as pd
 from sqlalchemy import create_engine
 from splinter import Browser
 from bs4 import BeautifulSoup

@@ -1,7 +1,7 @@
 import pandas as  pd
 from sqlalchemy import create_engine
 from splinter import Browser
-from bs4 import Beautifulsoap
+from bs4 import BeautifulSoup
 import requests
 import shutil
 import time

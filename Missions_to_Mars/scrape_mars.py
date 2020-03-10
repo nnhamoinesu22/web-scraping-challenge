@@ -1,11 +1,10 @@
-import pandas as pd
+import pandas as  pd
 from sqlalchemy import create_engine
 from splinter import Browser
-from bs4 import BeautifulSoup
+from bs4 import Beautifulsoap
 import requests
 import shutil
-import time 
-
+import time
 
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
@@ -16,7 +15,7 @@ def scrape_info():
     mars_info_dict = {}
     mars_info_dict["news_title"] = news_title
     mars_info_dict["news_paragraph"] = news_p
-    mars_info_dict["featured_image_url "] = featured_image_url 
+    mars_info_dict["featured_image_url"] = featured_image_url 
     mars_info_dict["mars_weather"] = mars_weather
     mars_info_dict["tweet_img_link"]= tweet_img_link
     mars_info_dict["mars_facts"] = mars_df_table_data_html

@@ -1,4 +1,4 @@
-import pandas as pd
+#import pandas as pd
 from sqlalchemy import create_engine
 from splinter import Browser
 from bs4 import BeautifulSoup
@@ -11,18 +11,6 @@ def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
     executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
     return Browser("chrome", **executable_path, headless=False)
-
-def scrape_info():
-    mars_info_dict = {}
-    mars_info_dict["news_title"] = news_title
-    mars_info_dict["news_paragraph"] = news_p
-    mars_info_dict["featured_image_url "] = featured_image_url 
-    mars_info_dict["mars_weather"] = mars_weather
-    mars_info_dict["tweet_img_link"]= tweet_img_link
-    mars_info_dict["mars_facts"] = mars_df_table_data_html
-    mars_info_dict["mars_hemisphere"] = mars_hemispheres
-
-    return mars_info_dict
 
 def scrape_mars_news():
     browser = init_browser()
@@ -37,7 +25,6 @@ def scrape_mars_news():
     news_p = latest_news_article.find("div", class_ ="article_teaser_body").text
 
     return mars_info_dict
-
     browser.quit()
 
 def scrape_mars_featured_image():
@@ -121,7 +108,22 @@ def scrape_mars_hemispheres():
     dictionary={"title":img_title,"img_url":img_url}
     mars_hemispheres.append(dictionary)
     browser.back()
+    mars_hemispheres
 
     return mars_info_dict
     browser.quit()
 
+def scrape_info():
+    mars_info_dict = {}
+    mars_info_dict["news_title"] = news_title
+    mars_info_dict["news_paragraph"] = news_p
+    mars_info_dict["featured_image_url "] = featured_image_url 
+    mars_info_dict["mars_weather"] = mars_weather
+    mars_info_dict["tweet_img_link"]= tweet_img_link
+    mars_info_dict["mars_facts"] = mars_df_table_data_html
+    mars_info_dict["mars_hemisphere"] = mars_hemispheres
+
+    return mars_info_dict
+
+if __name__ == "__main__":
+    print(scrape_info())

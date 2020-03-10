@@ -25,8 +25,8 @@
       <div class="row" id="mars-news">
         <div class="col-md-12">
             <h3>Latest Mars News</h3>
-              <h4>{{mars_info_dict.mars_news}}</h4>
-                  <p>{{mars_info_dict.mars_paragraph}}</p>
+              <h4>{{mars_info_dict.news_title}}</h4>
+                  <p>{{mars_info_dict.news_paragraph}}</p>
         </div>
       </div>
    </div>
@@ -50,8 +50,8 @@
       {% for hemisphere in mars_info_dict.mars_hemisphere %}
           <div class = "col-md-6">
               <div class = "thumbnail">
-                  <img src = "{{hemisphere.img_url}}">
-                      <h3>{{hemisphere.title}}</h3>
+                  <img src = "{{img_url}}">
+                      <h3>{{img_title}}</h3>
                   </div>
               </div>
       {% endfor %}

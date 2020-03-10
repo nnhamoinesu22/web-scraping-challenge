@@ -23,7 +23,7 @@
 
    <div class="container">
       <div class="row" id="mars-news">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h3>Latest Mars News</h3>
               <h4>{{mars_info_dict.news_title}}</h4>
                   <p>{{mars_info_dict.news_paragraph}}</p>
@@ -33,7 +33,9 @@
    <div class ="row" id="mars-image">
     <div class = "col-md-8">
         <h3>Featured Mars Image</h3>
-        <img src = "{{mars_info_dict.featured_image_url}}" alt ="Mars Image">
+        <a href="{{ mars_info_dict.featured_img_url }}">
+          <img class="figure_img" src="{{ mars_info_dict.featured_img_url }}" width=900px>
+      </a>
     </div>
     <div class = "col-md-4">
             <h4>Current Weather on Mars</h4>

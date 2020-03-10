@@ -124,6 +124,7 @@ def scrape_info():
     mars_info_dict["mars_hemisphere"] = mars_hemispheres
 
     return mars_info_dict
+    browser.quit()
 
 if __name__ == "__main__":
     print(scrape_info())

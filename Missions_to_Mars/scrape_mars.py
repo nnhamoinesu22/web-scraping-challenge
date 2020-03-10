@@ -1,7 +1,10 @@
-from bs4 import BeautifulSoup 
+import pandas as pd
+from sqlalchemy import create_engine
 from splinter import Browser
-import pandas as pd 
-import requests 
+from bs4 import BeautifulSoup
+import requests
+import shutil
+import time 
 
 
 def init_browser():
@@ -67,11 +70,11 @@ def scrape_mars_weather():
     tweets_list = []
     for tweets in latest_tweet: 
             tweet_body = tweets.find('p').text
-    if 'InSight' and 'sol' in tweet_body:
-            tweets_list.append(tweet_body)
-        break
+            if 'InSight' and 'sol' in tweet_body:
+                    tweets_list.append(tweet_body)
+            break
     else:    
-        pass
+            pass
 
     mars_weather = ([tweets_list[0]][0][:-26])
     tweet_img_link = ([tweets_list[0]][0][-26:])

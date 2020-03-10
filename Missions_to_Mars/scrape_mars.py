@@ -8,7 +8,7 @@ import time
 
 def init_browser():
     # @NOTE: Replace the path with your actual path to the chromedriver
-    executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
+    executable_path = {"executable_path": "C:\Users\nyara\Desktop\DataViz\Homework\web-scraping-challenge\Missions_to_Mars\chromedriver"}
     return Browser("chrome", **executable_path, headless=False)
 
 def scrape_info():

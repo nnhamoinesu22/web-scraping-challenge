@@ -25,25 +25,18 @@ def home():
 
 # Route that will trigger scrape function
 @app.route("/scrape")
-def scrapper():
-    mars_info_dict = mongo.db.mars_info_dict
-    mars_data = scrape_mars.scrape_all()
-    mars_info_dict.update({}, mars_data, upsert=True)
-    return "Scraping Successful"
-
-
-#def scrape(): 
+def scrape(): 
 
     # Run scrapped functions
-    #mars_info_dict = mongo.db.mars_info_dict
-    #mars_data = scrape_mars.scrape_mars_news()
-    #mars_data = scrape_mars.scrape_mars_featured_image()
-    #mars_data = scrape_mars.scrape_mars_weather()
-    #mars_data = scrape_mars.scrape_mars_facts()
-    #mars_data = scrape_mars.scrape_mars_hemispheres()
-    #mars_info_dict.update({}, mars_data, upsert=True)
+    mars_info_dict = mongo.db.mars_info_dict
+    mars_data = scrape_mars.scrape_mars_news(browser)
+    mars_data = scrape_mars.scrape_mars_featured_image(browser)
+    mars_data = scrape_mars.scrape_mars_weather(browser)
+    mars_data = scrape_mars.scrape_mars_facts(browser)
+    mars_data = scrape_mars.scrape_mars_hemispheres(browser)
+    mars_info_dict.update({}, mars_data, upsert=True)
 
-    #return redirect("/", code=302)
+    return redirect("/", code=302)
 
 if __name__ == "__main__": 
     app.run(debug= True)

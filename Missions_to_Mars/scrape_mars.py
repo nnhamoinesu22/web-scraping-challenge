@@ -12,6 +12,19 @@ def init_browser():
     executable_path = {"executable_path": "/usr/local/bin/chromedriver"}
     return Browser("chrome", **executable_path, headless=False)
 
+def scrape_info():
+    mars_info_dict = {}
+    mars_info_dict["news_title"] = news_title
+    mars_info_dict["news_paragraph"] = news_p
+    mars_info_dict["featured_image_url "] = featured_image_url 
+    mars_info_dict["mars_weather"] = mars_weather
+    mars_info_dict["tweet_img_link"]= tweet_img_link
+    mars_info_dict["mars_facts"] = mars_df_table_data_html
+    mars_info_dict["mars_hemisphere"] = mars_hemispheres
+
+    browser.quit()
+    return mars_info_dict
+    
 def scrape_mars_news():
     browser = init_browser()
 
@@ -24,8 +37,8 @@ def scrape_mars_news():
     news_title = latest_news_article.find("div", class_="content_title").text
     news_p = latest_news_article.find("div", class_ ="article_teaser_body").text
 
-    return mars_info_dict
     browser.quit()
+    return mars_info_dict
 
 def scrape_mars_featured_image():
     browser = init_browser()
@@ -38,9 +51,9 @@ def scrape_mars_featured_image():
     featured_image_url = "https://www.jpl.nasa.gov" + image
     featured_image_url 
 
-    return mars_info_dict
     browser.quit()
-
+    return mars_info_dict
+    
 def scrape_mars_weather():
     browser = init_browser()
 
@@ -66,9 +79,9 @@ def scrape_mars_weather():
     mars_weather = ([tweets_list[0]][0][:-26])
     tweet_img_link = ([tweets_list[0]][0][-26:])
 
-    return mars_info_dict
     browser.quit()
-
+    return mars_info_dict
+    
 def scrape_mars_facts():
     browser = init_browser()
     mars_facts_url = "https://space-facts.com/mars/"
@@ -83,11 +96,9 @@ def scrape_mars_facts():
     mars_df_table_data_html = mars_df_table_data.replace('\n', ' ')
     mars_df_table_data_html
 
-    return mars_info_dict
     browser.quit()
-
-
-
+    return mars_info_dict
+    
 def scrape_mars_hemispheres():
     browser = init_browser()
     mars_hemispheres_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
@@ -113,18 +124,6 @@ def scrape_mars_hemispheres():
     return mars_info_dict
     browser.quit()
 
-def scrape_info():
-    mars_info_dict = {}
-    mars_info_dict["news_title"] = news_title
-    mars_info_dict["news_paragraph"] = news_p
-    mars_info_dict["featured_image_url "] = featured_image_url 
-    mars_info_dict["mars_weather"] = mars_weather
-    mars_info_dict["tweet_img_link"]= tweet_img_link
-    mars_info_dict["mars_facts"] = mars_df_table_data_html
-    mars_info_dict["mars_hemisphere"] = mars_hemispheres
-
+#if __name__ == "__main__":
+ #   print(scrape_info())
     return mars_info_dict
-    browser.quit()
-
-if __name__ == "__main__":
-    print(scrape_info())

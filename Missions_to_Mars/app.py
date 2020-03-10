@@ -1,23 +1,24 @@
 # Import Dependencies 
 from flask import Flask, render_template, redirect 
 from flask_pymongo import PyMongo
-import scrape_mars
 import os
+import  "./scrape_mars.py"
 
 
 # Create an instance of Flask app
 app = Flask(__name__)
 
 # Use flask_pymongo to set up mongo connection locally 
-app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
-mongo = PyMongo(app)
+#app.config["MONGO_URI"] = "mongodb://localhost:27017/mars_app"
+#mongo = PyMongo(app)
+mongo = PyMongo(app, uri="mongodb://localhost:27017/weather_app")
 
 # Create route that renders index.html template and finds documents from mongo
 @app.route("/")
 def home(): 
 
     # Find data
-    mars_info_dict = mongo.db.mars_info.find_one()
+    mars_info_dict = mongo.db.mars_info_dict.find_one()
 
     # Return template and data
     return render_template("index.html", mars_info_dict=mars_info_dict)

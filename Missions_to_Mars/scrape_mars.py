@@ -20,7 +20,7 @@ def scrape_info():
     mars_info_dict["mars_weather"] = mars_weather
     mars_info_dict["tweet_img_link"]= tweet_img_link
     mars_info_dict["mars_facts"] = mars_df_table_data_html
-    mars_info_dict["mars_hemisphere"] = mars_hemispheres
+    mars_info_dict["mars_hemispheres"] = mars_hemispheres
 
     browser.quit()
     return mars_info_dict

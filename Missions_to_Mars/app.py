@@ -18,7 +18,7 @@ mongo = PyMongo(app)
 def index(): 
 
     # Find data
-    mars_info_dict = mongo.db.mars_info_dict.find_one()
+    mars_info_dict = mongo.db.mars.find_one()
 
     # Return template and data
     return render_template("index.html", mars_info_dict=mars_info_dict)

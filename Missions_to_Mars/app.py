@@ -29,7 +29,7 @@ def scrape():
 
     # Run scrapped functions
     mars_info_dict = mongo.db.mars_info_dict
-    mars_data = scrape_info()
+    mars_data = scrape_mars.scrape_info()
     mars_info_dict.update({}, mars_data, upsert=True)
 
     return redirect("/", code=302)

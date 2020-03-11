@@ -12,9 +12,16 @@ def init_browser():
     return Browser("chrome", **executable_path, headless=False)
 
 def scrape_info():
+
+    news_title,new_p = scrape_mars_news()
+    featured_image_url = scrape_mars_featured_image()
+    mars_weather,tweet_img_link = scrape_mars_weather()
+    mars_df_table_data_html = scrape_mars_facts()
+    mars_hemispheres = scrape_mars_hemispheres()
+
     mars_info_dict = {}
     mars_info_dict["news_title"] = news_title
-    mars_info_dict["news_paragraph"] = news_p
+    mars_info_dict["news_p"] = news_p
     mars_info_dict["featured_image_url"] = featured_image_url 
     mars_info_dict["mars_weather"] = mars_weather
     mars_info_dict["tweet_img_link"]= tweet_img_link
@@ -37,7 +44,7 @@ def scrape_mars_news():
     news_p = latest_news_article.find("div", class_ ="article_teaser_body").text
 
     browser.quit()
-    return mars_info_dict
+    return news_title,news_p
 
 def scrape_mars_featured_image():
     browser = init_browser()
@@ -48,10 +55,10 @@ def scrape_mars_featured_image():
 
     image = soup.find("img", class_="thumb")["src"]
     featured_image_url = "https://www.jpl.nasa.gov" + image
-    featured_image_url 
+     
 
     browser.quit()
-    return mars_info_dict
+    return featured_image_url
     
 def scrape_mars_weather():
     browser = init_browser()
@@ -79,7 +86,7 @@ def scrape_mars_weather():
     tweet_img_link = ([tweets_list[0]][0][-26:])
 
     browser.quit()
-    return mars_info_dict
+    return mars_weather,tweet_img_link
     
 def scrape_mars_facts():
     browser = init_browser()
@@ -93,10 +100,10 @@ def scrape_mars_facts():
     mars_df_table= mars_facts_df.set_index("Mars")
     mars_df_table_data = mars_df_table.to_html(classes='marsdata')
     mars_df_table_data_html = mars_df_table_data.replace('\n', ' ')
-    mars_df_table_data_html
+    
 
     browser.quit()
-    return mars_info_dict
+    return mars_df_table_data_html
     
 def scrape_mars_hemispheres():
     browser = init_browser()
@@ -120,9 +127,10 @@ def scrape_mars_hemispheres():
     browser.back()
     mars_hemispheres
 
-    return mars_info_dict
     browser.quit()
+    return mars_hemispheres
+    
 
 #if __name__ == "__main__":
  #   print(scrape_info())
-    return mars_info_dict
+   # return mars_info_dict

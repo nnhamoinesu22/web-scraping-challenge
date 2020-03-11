@@ -12,8 +12,8 @@ def init_browser():
     return Browser("chrome", **executable_path, headless=False)
 
 def scrape_info():
-
-    news_title= scrape_mars_news()
+ 
+    news_title = scrape_mars_news()
     news_p = scrape_mars_news()
     featured_image_url = scrape_mars_featured_image()
     mars_weather,tweet_img_link = scrape_mars_weather()

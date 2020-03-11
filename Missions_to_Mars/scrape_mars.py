@@ -67,31 +67,29 @@ def scrape_mars_featured_image():
     
 def scrape_mars_weather():
     browser = init_browser()
-
-    tweet_url = "https://twitter.com/marswxreport?lang=en"
-    browser.visit(tweet_url)
-    time.sleep(3)
-    html = browser.html
-    soup = BeautifulSoup(html, "html.parser")
-    
     tweet_url = "https://twitter.com/marswxreport?lang=en"
     tweet_html_content = requests.get(tweet_url).text
     soup = BeautifulSoup(tweet_html_content, "lxml")
     latest_tweet = soup.find_all('div', class_="js-tweet-text-container")
 
-    tweets_list = []
-    for tweets in latest_tweet: 
-            tweet_body = tweets.find('p').text
-            if 'InSight' and 'sol' in tweet_body:
-                    tweets_list.append(tweet_body)
-            break
-    else:    
-            pass
 
+    #empty list to hold tweet we are going to keep, used to strip useless content from string
+    tweets_list = []
+    # Loop that scans every tweet and searches specifically for those that have weather info
+    for tweets in latest_tweet: 
+        tweet_body = tweets.find('p').text
+        if 'InSight' and 'sol' in tweet_body:
+            tweets_list.append(tweet_body)
+            #break statement to only print the first weather tweet found
+            break
+        else: 
+            #if not weather related skip it and try again
+            pass
+        
+    #cleaned up tweet removes unncessary link to twitter image included in string, :-26 removes the last 26 characters which is the length of the img url
+    #after reviewing several links they all appear to work with the value of -26
     mars_weather = ([tweets_list[0]][0][:-26])
     tweet_img_link = ([tweets_list[0]][0][-26:])
-
-    browser.quit()
     return mars_weather,tweet_img_link
     
 def scrape_mars_facts():

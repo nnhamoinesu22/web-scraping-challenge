@@ -16,7 +16,8 @@ def scrape_info():
     news_title = scrape_mars_news()
     news_p = scrape_mars_news()
     featured_image_url = scrape_mars_featured_image()
-    mars_weather,tweet_img_link = scrape_mars_weather()
+    mars_weather = scrape_mars_weather()
+    tweet_img_link = scrape_mars_weather()
     mars_df_table_data_html = scrape_mars_facts()
     mars_hemispheres = scrape_mars_hemispheres()
 

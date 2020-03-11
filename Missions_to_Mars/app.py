@@ -28,7 +28,7 @@ def index():
 def scrape(): 
 
     # Run scrapped functions
-    #mars_info_dict = mongo.db.mars
+    mars_info_dict = mongo.db.mars
     mars_data = scrape_mars.scrape_info()
     mars_info_dict.update({}, mars_data, upsert=True)
 

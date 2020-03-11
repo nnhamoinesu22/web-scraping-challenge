@@ -39,6 +39,7 @@ def scrape_mars_news():
 
     news_url = "https://mars.nasa.gov/news/"
     browser.visit(news_url)
+    time.sleep(3)
     html = browser.html
     soup = BeautifulSoup(html, "html.parser")
 
@@ -53,6 +54,7 @@ def scrape_mars_featured_image():
     browser = init_browser()
     image_url = "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
     browser.visit(image_url)
+    time.sleep(3)
     html = browser.html
     soup = BeautifulSoup(html, "html.parser")
 
@@ -68,6 +70,7 @@ def scrape_mars_weather():
 
     tweet_url = "https://twitter.com/marswxreport?lang=en"
     browser.visit(tweet_url)
+    time.sleep(3)
     html = browser.html
     soup = BeautifulSoup(html, "html.parser")
     
@@ -112,6 +115,7 @@ def scrape_mars_hemispheres():
     browser = init_browser()
     mars_hemispheres_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
     browser.visit(mars_hemispheres_url)
+    time.sleep(3)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     mars_hemispheres=[]
@@ -120,6 +124,7 @@ def scrape_mars_hemispheres():
         time.sleep(3)
     images = browser.find_by_tag('h3')
     images[i].click()
+    time.sleep(3)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     img = soup.find("img", class_="wide-image")["src"]

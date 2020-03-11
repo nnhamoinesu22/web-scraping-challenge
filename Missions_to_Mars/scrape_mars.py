@@ -12,7 +12,8 @@ def init_browser():
     return Browser("chrome", **executable_path, headless=False)
 
 def scrape_info():
- 
+    browser = init_browser()
+
     news_title = scrape_mars_news()
     news_p = scrape_mars_news()
     featured_image_url = scrape_mars_featured_image()
@@ -135,4 +136,4 @@ def scrape_mars_hemispheres():
 
 #if __name__ == "__main__":
  #   print(scrape_info())
-   # return mars_info_dict
+    #return mars_info_dict

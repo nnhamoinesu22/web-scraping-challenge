@@ -110,30 +110,47 @@ def scrape_mars_facts():
     return mars_df_table_data_html
     
 def scrape_mars_hemispheres():
-    browser = init_browser()
-    mars_hemispheres_url = "https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars"
+#MARS Hemispheres
+    mars_hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(mars_hemispheres_url)
-    time.sleep(3)
-    html = browser.html
-    soup = BeautifulSoup(html, 'html.parser')
-    mars_hemispheres=[]
 
-    for i in range (4):
-        time.sleep(3)
-    images = browser.find_by_tag('h3')
-    images[i].click()
-    time.sleep(3)
-    html = browser.html
-    soup = BeautifulSoup(html, 'html.parser')
-    img = soup.find("img", class_="wide-image")["src"]
-    img_title = soup.find("h2",class_="title").text
-    img_url = 'https://astrogeology.usgs.gov'+ img
-    dictionary={"title":img_title,"img_url":img_url}
-    mars_hemispheres.append(dictionary)
+    hemisphere_image_urls = []
+    for i in range(4):
+
+        # Find the elements on each loop to avoid a stale element exception
+    browser.find_by_css("a.product-item h3")[i].click()
+
+    hemi_data = scrape_hemisphere(browser.html)
+
+        # Append hemisphere object to list
+    hemisphere_image_urls.append(hemi_data)
+
+        # Finally, we navigate backward
     browser.back()
-    mars_hemispheres
 
-    browser.quit()
+    return hemisphere_image_urls
+
+def scrape_hemisphere(html_text):
+
+    # Soupify the html text
+    hemi_soup = BeautifulSoup(html_text, "html.parser")
+
+    # Try to get href and text except if error.
+    try:
+        title_elem = hemi_soup.find("h2", class_="title").get_text()
+        sample_elem = hemi_soup.find("a", text="Sample").get("href")
+
+    except AttributeError:
+
+        # Image error returns None for better front-end handling
+        title_elem = None
+        sample_elem = None
+
+    mars_hemispheres = {
+        "title": title_elem,
+        "img_url": sample_elem
+    }
+
     return mars_hemispheres
     
 

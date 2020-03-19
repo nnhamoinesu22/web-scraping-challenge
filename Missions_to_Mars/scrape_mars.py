@@ -110,7 +110,7 @@ def scrape_mars_facts():
     return mars_df_table_data_html
     
 def scrape_mars_hemispheres():
-#MARS Hemispheres
+    browser = init_browser()
     mars_hemispheres_url = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(mars_hemispheres_url)
 

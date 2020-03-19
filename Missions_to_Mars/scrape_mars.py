@@ -118,15 +118,15 @@ def scrape_mars_hemispheres():
     for i in range(4):
 
         # Find the elements on each loop to avoid a stale element exception
-    browser.find_by_css("a.product-item h3")[i].click()
+        browser.find_by_css("a.product-item h3")[i].click()
 
-    hemi_data = scrape_hemisphere(browser.html)
+        hemi_data = scrape_hemisphere(browser.html)
 
         # Append hemisphere object to list
-    hemisphere_image_urls.append(hemi_data)
+        hemisphere_image_urls.append(hemi_data)
 
         # Finally, we navigate backward
-    browser.back()
+        browser.back()
 
     return hemisphere_image_urls
 
